@@ -21,7 +21,10 @@ def blocking_server(addr):
 
         print("Connection", addr)
 
-        fib_handler(client)
+        try:
+            fib_handler(client)
+        except Exception as err:
+            print("Error:", str(err))
 
     print("Closed")
 
