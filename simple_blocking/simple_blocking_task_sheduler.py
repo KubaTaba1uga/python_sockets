@@ -1,6 +1,16 @@
-""" Multiple simulatenous connections possible.
-Seperate threead is handling establishing connections.
+""" Multiple connections possible, but it is still blocking.
+Seperate thread is handling establishing connections.
 Main thread is handling requests.
+
+If you do on multiple terminals:
+    python3 count_req_per_sec.py
+
+It will look like multiple connections are handled in parallel
+but try to connect and do not send anything:
+    nc 127.0.0.1 8080
+
+All other terminals will show sth like:
+    Requests per second: 0
 """
 
 import socket
@@ -64,7 +74,7 @@ def _recv_req_task(client):
     req = client.recv(100)
 
     if not req:
-        connections.pop(client)
+        client.close()
 
     n = int(req)
 
@@ -86,7 +96,6 @@ def process_tasks():
         except IndexError:
             break
 
-        print(task)
         func, args = task
 
         try:
