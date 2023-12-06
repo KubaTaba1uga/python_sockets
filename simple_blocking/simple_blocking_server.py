@@ -1,3 +1,6 @@
+""" Only one simulatenous connection possible.
+"""
+
 import socket
 
 import __init__ as _

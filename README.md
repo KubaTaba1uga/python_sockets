@@ -11,3 +11,5 @@ Exploring sockets and parallel computaion is a goal here.
 There is a script wriiten specially for testing requests per second:
   `python count_requests_per_second.py`
 
+There is a script wriiten specially for testing one request time:
+  `python count_request_time.py`
